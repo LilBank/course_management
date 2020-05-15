@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 
   before_action :find_user, only: [:edit, :update,:destroy]
   def index
-    @users = User.all
+    if current_user.role == "Instructor"
+      @users = User.all
+    else
+      redirect_to courses_path
+    end
   end
 
   def new
