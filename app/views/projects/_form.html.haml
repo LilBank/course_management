@@ -1,13 +1,12 @@
-
-
-.row
-  .col-4
-    =form_for (@project) do |f|
-      .form-group
-        =f.label :name
-        =f.text_field :name, class: 'form-control'
-      .form-group
-        =f.label "Assign to group"
-        =f.select :group_id, options_for_select(Group.where(user_id: current_user.id).map{ |p| [p.name, p.id]}, @project.try(:group).try(:id)), {include_blank: 'Assign To Group'},{ class: 'form-control mt-3'}
-      .form-group
-        =f.submit "Create", class: 'btn btn-primary-outline'
+.container
+  .row
+    .col-4.offset-4.border
+      =form_for (@project) do |f|
+        .form-group
+          =f.label :name
+          =f.text_field :name, class: 'form-control'
+        .form-group
+          =f.label "Assign to group"
+          =f.select :group_id, options_for_select(Group.where(user_id: current_user.id).map{ |p| [p.name, p.id]}, @project.try(:group).try(:id)), {include_blank: 'Assign To Group'},{ class: 'form-control mt-3'}
+        .form-group
+          =f.submit "Done", class: 'btn btn-success mt-3'

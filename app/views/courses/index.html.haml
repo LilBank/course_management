@@ -1,15 +1,10 @@
-
-
-
--if current_user.present? and current_user.role == "Instructor"
-  =link_to "Create Course", new_course_path, class: 'btn btn-success mt-5'
 .container
   .row
     .col-10.offset-1
       -if current_user.present? and current_user.role == "Instructor"
         %h2.text-center Courses you have created
       -else
-        %h2.text-center Courses you subscribed
+        %h2.text-center Courses you have subscribed
       
       %table.table.table-bordered.table-hover
         %thead.bg-primary.text-white
@@ -28,12 +23,7 @@
           -else
             %tr
               %td{colspan: 3}= "No Courses to show"
-      -# .list-group
-      -#   -if @courses.present?
-      -#     -@courses.each do |course|
-      -#       .list-group-item.list-group-item-action{:href => "#"}
-      -#         %span=course.name
-      -#         %button.btn-sm.btn.btn-success.btn-outline-success.float-right Subscribe
-      -#   -else
-      -#     .list-group-item.list-group-item-action{:href => "#"}
-      -#       %span  No Courses Available
+  .row.float-right
+    .col-12
+      -if current_user.present? and current_user.role == "Instructor"
+        =link_to "Create Course", new_course_path, class: 'btn btn-success mt-5'

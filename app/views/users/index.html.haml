@@ -6,6 +6,7 @@
     %tr
       %th Name
       %th Student ID
+      %th Instructor ID
       %th Username
       %th Citizen ID
       -if current_user.present? and current_user.role == "Instructor"
@@ -16,6 +17,7 @@
         %tr
           %td=user.first_name + " "+ user.last_name
           %th=user.student_id
+          %th=user.instructor_id
           %th=user.login
           %th=user.citizen_id
           -if current_user.present? and current_user.role == "Instructor"

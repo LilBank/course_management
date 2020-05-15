@@ -1,9 +1,9 @@
-
-.row
-  .col-4
-    =form_for (@course) do |f|
-      .form-group
-        =f.label :name
-        =f.text_field :name, class: 'form-control'
-      .form-group
-        =f.submit "Create", class: 'btn btn-primary-outline'
+.container
+  .row
+    .col-4.offset-4.border
+      =form_for (@course) do |f|
+        .form-group
+          =f.label :name
+          =f.text_field :name, class: 'form-control'
+        .form-group
+          =f.submit "Done", class: 'btn btn-success mt-3'
