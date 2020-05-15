@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :first_name
       t.string :last_name
       t.string :citizen_id
-      t.string :login
+      t.string :username
       t.string :instructor_id
       t.string :department_name
       t.string :student_id
