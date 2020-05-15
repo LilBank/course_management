@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     if current_user.role == "Instructor"
       @projects = Project.where(user_id: current_user.id)
     else
-      @projects = current_user.projects
+      redirect_to courses_path
     end
   end
 

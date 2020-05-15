@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
     if current_user.role == "Instructor"
       @groups = Group.where(user_id: current_user.id)
     else
-      @groups = current_user.groups
+      redirect_to courses_path
     end
   end
 
