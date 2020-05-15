@@ -1,6 +1,6 @@
 # Course Management
 
-A simple web application based on Ruby on Rails.
+A simple web application based on Ruby on Rails. The application is about an online course where instructors create and manage courses while students and public people can join any course they want.
 
 ## Prerequisites
 
