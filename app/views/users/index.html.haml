@@ -1,0 +1,27 @@
+
+
+%h1.text-center All Users
+%table.table.table-bordered.table-hover
+  %thead.bg-primary.text-white
+    %tr
+      %th Name
+      %th Student ID
+      %th Username
+      %th Citizen ID
+      -if current_user.present? and current_user.role == "Instructor"
+        %th{colspan: 2} Actions
+  %tbody
+    -if @users.present?
+      -@users.each do |user|
+        %tr
+          %td=user.first_name + " "+ user.last_name
+          %th=user.student_id
+          %th=user.login
+          %th=user.citizen_id
+          -if current_user.present? and current_user.role == "Instructor"
+            %td=link_to "Edit", edit_user_path(user)
+            %td=link_to "Delete", user_path(user), method: :delete
+            -# %td=select_tag :project, options_for_select(current_user.projects.map{ |p| [p.id, p.name]}), {include_blank: 'Assign Project', class: 'form-control'}
+    -else
+      %tr
+        %td{colspan: 3}= "No Projects to show"

@@ -1,0 +1,41 @@
+
+
+
+-if current_user.present? and current_user.role == "Instructor"
+  =link_to "Create Group", new_group_path, class: 'btn btn-success mt-5'
+.container
+  .row
+    .col-10.offset-1
+      -if current_user.present? and current_user.role == "Instructor"
+        %h2.text-center Groups you have created
+      -else
+        %h2.text-center Groups in which you have been added.
+      
+      %table.table.table-bordered.table-hover
+        %thead.bg-primary.text-white
+          %tr
+            %th Group Name
+            -if current_user.present? and current_user.role == "Instructor"
+              %th Actions
+            %th Marks
+        %tbody
+          -if @groups.present?
+            -@groups.each do |group|
+              %tr
+                %td=group.name
+                -if current_user.present? and current_user.role == "Instructor"
+                  %td=link_to "Edit", edit_group_path(group)
+                  %td= group.score.present? ? group.score : (link_to "Add Marks", edit_group_path(group,add_marks: true))
+                  -# %td=select_tag :project, options_for_select(current_user.projects.map{ |p| [p.id, p.name]}), {include_blank: 'Assign Project', class: 'form-control'}
+          -else
+            %tr
+              %td{colspan: 3}= "No Groups to show"
+      -# .list-group
+      -#   -if @courses.present?
+      -#     -@courses.each do |course|
+      -#       .list-group-item.list-group-item-action{:href => "#"}
+      -#         %span=course.name
+      -#         %button.btn-sm.btn.btn-success.btn-outline-success.float-right Subscribe
+      -#   -else
+      -#     .list-group-item.list-group-item-action{:href => "#"}
+      -#       %span  No Courses Available

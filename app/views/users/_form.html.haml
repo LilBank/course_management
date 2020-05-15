@@ -1,0 +1,57 @@
+
+.row
+  .col-4.offset-4.border
+    %h2 User Form
+    = form_for(@user) do |f|
+      .form-group
+        = f.label :first_name
+        = f.text_field :first_name, class: 'form-control'
+      .form-group
+        = f.label :last_name
+        = f.text_field :last_name, class: 'form-control'
+      .form-group
+        = f.label "Citizen ID"
+        = f.text_field :citizen_id, class: 'form-control'
+      .form-group
+        = f.label "username"
+        = f.text_field :login, class: 'form-control'
+      -# .form-group
+      -#   = f.label "Type"
+      -#   = f.select :role, options_for_select(User.roles), {include_blank: 'Select'},{ class: 'form-control' , onchange: 'display_fields(this)'}
+      .form-group.hidden.student-fields
+        = f.label :student_id
+        = f.text_field :student_id, class: 'form-control'
+      .form-group.hidden.instructor-fields
+        = f.label "Instructor ID"
+        = f.text_field :instructor_id, class: 'form-control'
+      .form-group.hidden.instructor-fields
+        = f.label :department_name
+        = f.text_field :department_name, class: 'form-control'
+      .form-group
+        = f.label :password
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} characters minimum)
+        %br/
+        = f.password_field :password, autocomplete: "new-password", class: 'form-control'
+      .field
+        = f.label :password_confirmation
+        %br/
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+      .actions
+        = f.submit "Update", class: 'btn btn-primary float-right mt-3'
+
+:javascript
+  function display_fields(element){
+      var val = $(element).val();
+      if(val == "Student"){
+        $('.instructor-fields').addClass('hidden');
+        $('.student-fields').removeClass('hidden');
+      }else if (val == "Instructor"){
+        $('.student-fields').addClass('hidden');
+        $('.instructor-fields').removeClass('hidden');
+      }else{
+        $('.instructor-fields').addClass('hidden');
+        $('.student-fields').addClass('hidden');
+      }
+    }

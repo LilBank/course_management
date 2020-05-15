@@ -1,0 +1,39 @@
+
+
+%div.alert.alert-success.hidden
+  %span
+%h1.text-center.mt-2 Students
+
+=hidden_field_tag :course_id, params[:id]
+%table.table.table-bordered.table-hover
+  %thead.bg-dark.text-white
+    %tr
+      %th id
+      %th Name
+      %th Add to Group
+  %tbody
+    -@students.each do |student|
+      %tr
+        %td=student.id
+        %td=student.first_name + " "+student.last_name
+        %td=select_tag :group_id, options_for_select(Group.where(user_id: current_user.id).map{ |g| [g.name,g.id]}, GroupsUsers.where(user_id: student.id, course_id: params[:id])[0].try(:group_id)), {include_blank: 'Select Group', class: 'form-control', onchange: 'add_to_group(this)'}
+
+:javascript
+  function add_to_group(element){
+    var user_id = $(element).closest('tr').find('td:first-child').html();
+    var group_id = $(element).val();
+
+    $.ajax({
+      type: 'POST',
+      url: '/groups/add_to_group',
+      data: {'user_id': user_id, 'group_id': group_id, 'course_id': $("#course_id").val()},
+      success: function(response){
+        $('div.alert').removeClass('hidden');
+        $('div.alert').html("User Added To Group");
+        $(element).closest('tr').hide();
+      },
+      error: function(error){
+
+      }
+    })
+  }

@@ -1,0 +1,32 @@
+
+-if current_user.present? and current_user.role == "Instructor"
+  .row
+    .col-6.offset-3
+      %h2.text-center My Groups Stats
+      %table.table.table-bordered.table-hover
+        %thead.bg-success.text-white
+          %tr
+            %th Group Name
+            %th Number of Students
+        %tbody
+          -if @groups.present?
+            -@groups.each do |group|
+              %tr
+                %td=group.name
+                %td=group.users.count
+-else
+  .container
+    .row
+      .col-6.offset-3
+        %h2.text-center All Courses
+        .list-group
+          -if @courses.present?
+            -@courses.each do |course|
+              .list-group-item.list-group-item-action{:href => "#"}
+                %span=course.name
+                =link_to "Subscribe", subscribe_course_course_path(course), class: 'btn-sm btn btn-success float-right'
+          -else
+            .list-group-item.list-group-item-action{:href => "#"}
+              %span  No Courses Available
+
+

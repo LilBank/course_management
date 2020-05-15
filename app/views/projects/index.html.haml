@@ -1,0 +1,40 @@
+
+
+
+-if current_user.present? and current_user.role == "Instructor"
+  =link_to "Create Project", new_project_path, class: 'btn btn-success mt-5'
+.container
+  .row
+    .col-10.offset-1
+      -if current_user.present? and current_user.role == "Instructor"
+        %h2.text-center Projects you have created
+      
+      
+      %table.table.table-bordered.table-hover
+        %thead.bg-primary.text-white
+          %tr
+            %th Project Name
+            %th Assigned to Group
+            -if current_user.present? and current_user.role == "Instructor"
+              %th{colspan: 2} Actions
+        %tbody
+          -if @projects.present?
+            -@projects.each do |project|
+              %tr
+                %td=project.name
+                %th=project.group.name
+                -if current_user.present? and current_user.role == "Instructor"
+                  %td=link_to "Edit", edit_project_path(project)
+                  -# %td=select_tag :project, options_for_select(current_user.projects.map{ |p| [p.id, p.name]}), {include_blank: 'Assign Project', class: 'form-control'}
+          -else
+            %tr
+              %td{colspan: 3}= "No Projects to show"
+      -# .list-group
+      -#   -if @courses.present?
+      -#     -@courses.each do |course|
+      -#       .list-group-item.list-group-item-action{:href => "#"}
+      -#         %span=course.name
+      -#         %button.btn-sm.btn.btn-success.btn-outline-success.float-right Subscribe
+      -#   -else
+      -#     .list-group-item.list-group-item-action{:href => "#"}
+      -#       %span  No Courses Available
