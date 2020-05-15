@@ -58,5 +58,5 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'bootstrap'
 gem 'haml'
-gem "erb2haml", :group => :development
+gem 'erb2haml', :group => :development
 gem 'pundit'
