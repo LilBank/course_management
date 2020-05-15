@@ -4,6 +4,10 @@
     %h2 Sign up
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = render "devise/shared/error_messages", resource: resource
+      - flash.each do |type, msg|
+        %div{:class => "alert alert-#{type == :notice ? "success" : type} fadeout", "data-dismiss" => "alert"}
+          %button.close &times;
+          = msg if msg.is_a?(String)
       .form-group
         = f.label :first_name
         = f.text_field :first_name, class: 'form-control'
@@ -20,10 +24,10 @@
         = f.label "Type"
         = f.select :role, options_for_select(User.roles), {include_blank: 'Select'},{ class: 'form-control' , onchange: 'display_fields(this)'}
       .form-group.hidden.student-fields
-        = f.label :student_id
+        = f.label :student_identity
         = f.text_field :student_id, class: 'form-control'
       .form-group.hidden.instructor-fields
-        = f.label "Instructor ID"
+        = f.label "instructor_identity"
         = f.text_field :instructor_id, class: 'form-control'
       .form-group.hidden.instructor-fields
         = f.label :department_name
