@@ -24,7 +24,9 @@
             -@courses.each do |course|
               .list-group-item.list-group-item-action{:href => "#"}
                 %span=course.name
-                =link_to "Subscribe", subscribe_course_course_path(course), class: 'btn-sm btn btn-success float-right'
+                -if current_user.present?
+                  -if current_user.role == "Student" or current_user.role == "Other"
+                    =link_to "Subscribe", subscribe_course_course_path(course), class: 'btn-sm btn btn-success float-right'
           -else
             .list-group-item.list-group-item-action{:href => "#"}
               %span  No Courses Available
