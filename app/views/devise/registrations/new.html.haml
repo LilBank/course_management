@@ -45,7 +45,6 @@
         = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
       .actions
         = f.submit "Sign up", class: 'btn btn-primary float-right mt-3'
-    = render "devise/shared/links"
 
 :javascript
   function display_fields(element){
