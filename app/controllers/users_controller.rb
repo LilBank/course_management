@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-
   before_action :find_user, only: [:edit, :update,:destroy]
+
   def index
     if current_user.role == "Instructor"
       @users = User.all
@@ -20,14 +20,14 @@ class UsersController < ApplicationController
   def update
     # puts @user.update(user_params)
     # redirect_to users_path, notice: 'Successfully updated...'
-    if 
-      @user.update; redirect_to users_path, notice: 'Successfully updated...'
+    if @user.update_attributes(user_params)
+      redirect_to users_path, notice: 'Successfully updated...'
     else  
-      render :new
+      redirect_to users_path, alert: "Unable to update user."
     end
   end
 
-  def create
+  def createcure_params
     @user = User.new(user_params)
     if @user.save
       redirect_to users_path, notice: 'Successfully Created'

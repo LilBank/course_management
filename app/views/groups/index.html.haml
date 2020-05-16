@@ -21,7 +21,6 @@
                 -if current_user.present? and current_user.role == "Instructor"
                   %td=link_to "Edit", edit_group_path(group)
                   %td= group.score.present? ? group.score : (link_to "Add Marks", edit_group_path(group,add_marks: true))
-                  -# %td=select_tag :project, options_for_select(current_user.projects.map{ |p| [p.id, p.name]}), {include_blank: 'Assign Project', class: 'form-control'}
           -else
             %tr
               %td{colspan: 3}= "No Groups to show"
