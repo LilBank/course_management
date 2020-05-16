@@ -19,13 +19,11 @@ class GroupsController < ApplicationController
 
   def update
     @group.update(group_params)
-    # @group.course = Course.find(params[:group][:course])
     redirect_to groups_path, notice: 'Successfully updated...'
   end
 
   def create
     @group = Group.new(group_params)
-    # @group.course = Course.find(params[:group][:course])
     @group.user_id = current_user.id
     if @group.save
       redirect_to groups_path, notice: 'Successfully Created'

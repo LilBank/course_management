@@ -33,12 +33,11 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def find_project
+      @project = Project.find(params[:id])
+    end
 
-  def find_project
-    @project = Project.find(params[:id])
-  end
-
-  def project_params
-    params.require(:project).permit(:name, :user_id, :group_id)
-  end
+    def project_params
+      params.require(:project).permit(:name, :user_id, :group_id)
+    end
 end

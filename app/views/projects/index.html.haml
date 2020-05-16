@@ -24,15 +24,6 @@
           -else
             %tr
               %td{colspan: 3}= "No Projects to show"
-      -# .list-group
-      -#   -if @courses.present?
-      -#     -@courses.each do |course|
-      -#       .list-group-item.list-group-item-action{:href => "#"}
-      -#         %span=course.name
-      -#         %button.btn-sm.btn.btn-success.btn-outline-success.float-right Subscribe
-      -#   -else
-      -#     .list-group-item.list-group-item-action{:href => "#"}
-      -#       %span  No Courses Available
   .row.float-right
     .col-12
       -if current_user.present? and current_user.role == "Instructor"

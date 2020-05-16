@@ -48,12 +48,11 @@ class CoursesController < ApplicationController
   end
 
   private
+    def find_course
+      @course = Course.find(params[:id])
+    end
 
-  def find_course
-    @course = Course.find(params[:id])
-  end
-
-  def course_params
-    params.require(:course).permit(:name, :user_id)
-  end
+    def course_params
+      params.require(:course).permit(:name, :user_id)
+    end
 end

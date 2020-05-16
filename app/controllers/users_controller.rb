@@ -18,8 +18,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to users_path, notice: 'Successfully updated...'
+    # puts @user.update(user_params)
+    # redirect_to users_path, notice: 'Successfully updated...'
+    if 
+      @user.update; redirect_to users_path, notice: 'Successfully updated...'
+    else  
+      render :new
+    end
   end
 
   def create
@@ -35,13 +40,14 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path, notice: 'Successfully Deleted'
   end
+
+
   private
+    def find_user
+      @user = User.find(params[:id])
+    end
 
-  def find_user
-    @user = User.find(params[:id])
-  end
-
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :login, :student_id, :citizen_id, :department_name, :instructor_id )
-  end
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :login, :student_id, :citizen_id, :department_name, :instructor_id)
+    end
 end
