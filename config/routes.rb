@@ -6,14 +6,14 @@ Rails.application.routes.draw do
     member do
       get 'view_students'
       get 'subscribe_course'
-      get 'un_subscribe_course'
+      # get 'un_subscribe_course'
     end
   end
 
   resources :groups  do 
     member do
       get 'view_students'
-      get 'remove_from_group'
+      # get 'remove_from_group'
     end
     collection do 
       post 'add_to_group'

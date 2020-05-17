@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-
   before_action :find_course, only: [:edit, :update, :view_students]
+
   def index
     if current_user.role == "Instructor"
       @courses = Course.where(user_id: current_user.id)
@@ -12,9 +12,6 @@ class CoursesController < ApplicationController
 
   def new
     @course = current_user.courses.build
-  end
-
-  def edit
   end
 
   def update
@@ -48,12 +45,11 @@ class CoursesController < ApplicationController
   end
 
   private
+    def find_course
+      @course = Course.find(params[:id])
+    end
 
-  def find_course
-    @course = Course.find(params[:id])
-  end
-
-  def course_params
-    params.require(:course).permit(:name, :user_id)
-  end
+    def course_params
+      params.require(:course).permit(:name, :user_id)
+    end
 end
