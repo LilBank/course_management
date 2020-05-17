@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-
   before_action :find_project, only: [:edit, :update]
+
   def index
     if current_user.role == "Instructor"
       @projects = Project.where(user_id: current_user.id)
@@ -12,9 +12,6 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.projects.build
-  end
-
-  def edit
   end
 
   def update

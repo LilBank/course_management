@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-
   before_action :find_course, only: [:edit, :update, :view_students]
+
   def index
     if current_user.role == "Instructor"
       @courses = Course.where(user_id: current_user.id)
@@ -12,9 +12,6 @@ class CoursesController < ApplicationController
 
   def new
     @course = current_user.courses.build
-  end
-
-  def edit
   end
 
   def update

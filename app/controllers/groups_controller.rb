@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-
   before_action :find_group, only: [:edit, :update]
+
   def index
     if current_user.role == "Instructor"
       @groups = Group.where(user_id: current_user.id)
@@ -12,9 +12,6 @@ class GroupsController < ApplicationController
 
   def new
     @group = current_user.groups.build
-  end
-
-  def edit
   end
 
   def update
@@ -48,12 +45,11 @@ class GroupsController < ApplicationController
   end
 
   private
+    def find_group
+      @group = Group.find(params[:id])
+    end
 
-  def find_group
-    @group = Group.find(params[:id])
-  end
-
-  def group_params
-    params.require(:group).permit(:name, :user_id, :score)
-  end
+    def group_params
+      params.require(:group).permit(:name, :user_id, :score)
+    end
 end

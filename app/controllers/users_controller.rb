@@ -14,12 +14,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-  end
-
   def update
-    # puts @user.update(user_params)
-    # redirect_to users_path, notice: 'Successfully updated...'
     if @user.update_attributes(user_params)
       redirect_to users_path, notice: 'Successfully updated...'
     else  
@@ -40,7 +35,6 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path, notice: 'Successfully Deleted'
   end
-
 
   private
     def find_user
