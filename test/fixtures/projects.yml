@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+project_001:
+  name: FirstProject
 
-two:
-  name: MyString
+project_002:
+  name: SecondProject
+
+project_003:
+  name: ThirdProject
