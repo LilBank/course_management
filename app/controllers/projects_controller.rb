@@ -3,11 +3,8 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:edit, :update]
 
   def index
-    if current_user.role == "Instructor"
-      @projects = Project.where(user_id: current_user.id)
-    else
-      redirect_to courses_path
-    end
+    @projects = Project.where(user_id: current_user.id)
+    authorize User
   end
 
   def new
@@ -15,11 +12,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    authorize User
     @project.update(project_params)
     redirect_to projects_path, notice: 'Successfully updated...'
   end
 
   def create
+    authorize User
     @project = Project.new(project_params)
     @project.user_id = current_user.id
     if @project.save

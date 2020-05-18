@@ -1,30 +1,23 @@
 .container
   .row
     .col-10.offset-1
-      -if current_user.present? and current_user.role == "Instructor"
-        %h2.text-center Groups you have created
-      -else
-        %h2.text-center Groups in which you have been added.
-      
+      %h2.text-center Groups you have created
       %table.table.table-bordered.table-hover
         %thead.bg-primary.text-white
           %tr
             %th Group Name
-            -if current_user.present? and current_user.role == "Instructor"
-              %th Actions
+            %th Actions
             %th Marks
         %tbody
           -if @groups.present?
             -@groups.each do |group|
               %tr
                 %td=group.name
-                -if current_user.present? and current_user.role == "Instructor"
-                  %td=link_to "Edit", edit_group_path(group)
-                  %td= group.score.present? ? group.score : (link_to "Add Marks", edit_group_path(group,add_marks: true))
+                %td=link_to "Edit", edit_group_path(group)
+                %td= group.score.present? ? group.score : (link_to "Add Marks", edit_group_path(group,add_marks: true))
           -else
             %tr
               %td{colspan: 3}= "No Groups to show"
   .row.float-right
     .col-12
-      -if current_user.present? and current_user.role == "Instructor"
-        =link_to "Create Group", new_group_path, class: 'btn btn-success mt-5'
+      =link_to "Create Group", new_group_path, class: 'btn btn-success mt-5'
