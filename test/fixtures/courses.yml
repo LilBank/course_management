@@ -1,22 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 course_001:
-  id: 1
   name: Spy course
   user_id: 1
 
 course_002:
-  id: 2
   name: Cooking
   user_id: 4
 
 course_003:
-  id: 3
   name: P.E.
   user_id: 4
 
 course_004:
-  id: 4
   name: Math
   user_id: 4
 
