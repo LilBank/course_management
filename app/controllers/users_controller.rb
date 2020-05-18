@@ -3,18 +3,12 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update,:destroy]
 
   def index
-    if current_user.role == "Instructor"
-      @users = User.all
-    else
-      redirect_to courses_path
-    end
-  end
-
-  def new
-    @user = User.new
+    @users = User.all
+    authorize User
   end
 
   def update
+    authorize @user
     if @user.update_attributes(user_params)
       redirect_to users_path, notice: 'Successfully updated...'
     else  
@@ -22,16 +16,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def createcure_params
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to users_path, notice: 'Successfully Created'
-    else
-      redirect_to users_path, notice: 'Error creating User'
-    end
-  end
-
   def destroy
+    authorize @user
     @user.destroy
     redirect_to users_path, notice: 'Successfully Deleted'
   end

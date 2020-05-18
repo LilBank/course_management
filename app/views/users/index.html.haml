@@ -9,8 +9,7 @@
       %th Instructor ID
       %th Username
       %th Citizen ID
-      -if current_user.present? and current_user.role == "Instructor"
-        %th{colspan: 2} Actions
+      %th{colspan: 2} Actions
   %tbody
     -if @users.present?
       -@users.each do |user|
@@ -23,7 +22,6 @@
           -if current_user.present? and current_user.role == "Instructor"
             %td=link_to "Edit", edit_user_path(user)
             %td=link_to "Delete", user_path(user), method: :delete
-            -# %td=select_tag :project, options_for_select(current_user.projects.map{ |p| [p.id, p.name]}), {include_blank: 'Assign Project', class: 'form-control'}
     -else
       %tr
         %td{colspan: 3}= "No Users to show"

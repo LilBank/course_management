@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   before_action :find_course, only: [:edit, :update, :view_students]
 
   def index
-    if current_user.role == "Instructor"
+    if policy(User).index?
       @courses = Course.where(user_id: current_user.id)
     else
       @courses = current_user.courses
@@ -15,11 +15,13 @@ class CoursesController < ApplicationController
   end
 
   def update
+    authorize User
     @course.update(course_params)
     redirect_to courses_path, notice: 'Successfully updated...'
   end
 
   def create
+    authorize User
     @course = Course.new(course_params)
     @course.user_id = current_user.id
     if @course.save
@@ -32,12 +34,6 @@ class CoursesController < ApplicationController
   def subscribe_course
     CoursesUsers.create(user_id: current_user.id, course_id: params[:id])
     redirect_to courses_path, notice: 'Successfully Subscribed'
-  end
-
-  def un_subscribe_course
-    @cc = CoursesUsers.where(user_id: current_user.id, course_id: params[:id])
-    @cc.destroy
-    redirect_to courses_path, notice: 'Successfully Un-Subscribed'
   end
 
   def view_students

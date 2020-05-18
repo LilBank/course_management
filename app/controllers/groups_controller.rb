@@ -3,11 +3,8 @@ class GroupsController < ApplicationController
   before_action :find_group, only: [:edit, :update]
 
   def index
-    if current_user.role == "Instructor"
-      @groups = Group.where(user_id: current_user.id)
-    else
-      redirect_to courses_path
-    end
+    @groups = Group.where(user_id: current_user.id)
+    authorize User
   end
 
   def new
@@ -15,11 +12,13 @@ class GroupsController < ApplicationController
   end
 
   def update
+    authorize User
     @group.update(group_params)
     redirect_to groups_path, notice: 'Successfully updated...'
   end
 
   def create
+    authorize User
     @group = Group.new(group_params)
     @group.user_id = current_user.id
     if @group.save
@@ -36,12 +35,6 @@ class GroupsController < ApplicationController
     else
       render json: { msg: 'failure' }
     end
-  end
-
-  def remove_from_group
-    @cc = GroupsUsers.where(user_id: current_user.id, course_id: params[:id])
-    @cc.destroy
-    redirect_to groups_path, notice: 'Successfully Removed'
   end
 
   private
