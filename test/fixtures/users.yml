@@ -1,11 +1,62 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+user_007:
+    id: 1
+    encrypted_password: <%= Devise::Encryptor.digest(User, 'Bond007') %>
+    first_name: James
+    last_name: Bond
+    citizen_id: 007
+    login: SpyJames
+    instructor_id: 007
+    department_name: Spy
+    role: Instructor
+    courses: course_001
+
+user_001:
+    id: 2
+    encrypted_password: <%= Devise::Encryptor.digest(User, 'HiDude') %>
+    first_name: First
+    last_name: Guy
+    citizen_id: 001
+    login: Badboy
+    role: Other
+    courses: course_001, course_003, course_004
+    groups: group_001, group_002
+
+user_002:
+    id: 3
+    encrypted_password: <%= Devise::Encryptor.digest(User, 'HelloGirl') %>
+    first_name: Second
+    last_name: Girl
+    citizen_id: 002
+    login: Girly
+    student_id: 001
+    role: Student
+    courses: course_001, course_002, course_003
+    groups: group_003, group_004
+
+user_003:
+    id: 4
+    encrypted_password: <%= Devise::Encryptor.digest(User, 'Teacher') %>
+    first_name: Teacher
+    last_name: Test
+    citizen_id: 003
+    login: Teacher
+    instructor_id: 002
+    department_name: Anything
+    role: Instructor
+    courses: course_002, course_003, course_004
+
+user_004:
+    id: 5
+    encrypted_password: <%= Devise::Encryptor.digest(User, 'Student') %>
+    first_name: Clever
+    last_name: Student
+    citizen_id: 004
+    login: student
+    student_id: 002
+    role: Student
+    courses: course_002, course_003, course_004
+    groups: group_002, group_003
+    
+

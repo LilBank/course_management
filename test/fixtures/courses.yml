@@ -1,9 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  instructor: one
+course_001:
+  name: Spy course
+  user_id: 1
 
-two:
-  name: MyString
-  instructor: two
+course_002:
+  name: Cooking
+  user_id: 4
+
+course_003:
+  name: P.E.
+  user_id: 4
+
+course_004:
+  name: Math
+  user_id: 4
+
