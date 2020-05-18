@@ -1,4 +1,4 @@
-
+%script(src="./app/assets/registration.js")
 .row
   .col-4.offset-4.border
     %h2 Sign up
@@ -37,26 +37,9 @@
         - if @minimum_password_length
           %em
             (#{@minimum_password_length} characters minimum)
-        %br/
         = f.password_field :password, autocomplete: "new-password", class: 'form-control'
       .field
         = f.label :password_confirmation
-        %br/
         = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
       .actions
         = f.submit "Sign up", class: 'btn btn-primary float-right mt-3'
-
-:javascript
-  function display_fields(element){
-      var val = $(element).val();
-      if(val == "Student"){
-        $('.instructor-fields').addClass('hidden');
-        $('.student-fields').removeClass('hidden');
-      }else if (val == "Instructor"){
-        $('.student-fields').addClass('hidden');
-        $('.instructor-fields').removeClass('hidden');
-      }else{
-        $('.instructor-fields').addClass('hidden');
-        $('.student-fields').addClass('hidden');
-      }
-    }
