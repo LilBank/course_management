@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_user, only: [:edit, :update,:destroy]
+  before_action :authenticate_user!, :find_user, only: [:edit, :update,:destroy]
 
   def index
-    if current_user.role == "Instructor"
-      @users = User.all
-    else
-      redirect_to courses_path
-    end
+    # if current_user.role == "Instructor"
+    #   @users = User.all
+    # else
+    #   redirect_to courses_path
+    # end
+    @users = User.all
+    authorize @user
   end
 
   def new
