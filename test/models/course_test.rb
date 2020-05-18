@@ -1,7 +1,5 @@
 require 'test_helper'
 
-require 'test_helper'
-
 class CourseTest < ActiveSupport::TestCase
   test "should get course(s) from a single instructor" do
     assert_equal ["Spy course"], users(:user_007).courses.map { |course| course.name }
