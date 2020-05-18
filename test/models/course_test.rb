@@ -7,7 +7,7 @@ class CourseTest < ActiveSupport::TestCase
     assert_equal ["Spy course"], users(:user_007).courses.map { |course| course.name }
   end
 
-  test "should get courses from multiple instructors" do
+  test "should get courses from a single instructors" do
     assert_equal ["Cooking","P.E.","Math"], users(:user_003).courses.map { |course| course.name }
   end
 
